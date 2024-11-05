@@ -30,7 +30,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ${pageContext.request.requestURI.substring(pageContext.request.requestURI.lastIndexOf("/")) eq '/about.jsp' ? ' active' : ''} "
+                        <a class="nav-link  ${activePage eq 'Cars' ? 'active' : ''}"
                            aria-current="page"
                            href="${pageContext.request.contextPath}/Cars">
                             Cars
