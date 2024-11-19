@@ -2,17 +2,16 @@ package com.parking.parkinglot1.common;
 
 public class UserDto {
 
-    ;
-    String username;
+    String name;
     String email;
 
     public UserDto(String username, String email) {
-        this.username = username;
+        this.name = username;
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {
