@@ -34,7 +34,7 @@ public class UserBean {
     private List<UserDto> copyUsersToDto(List<User> users){
         List<UserDto> userDtoList = new ArrayList<>();
         for(User user : users){
-            UserDto userDtoEntry = new UserDto(user.getName(), user.getEmail());
+            UserDto userDtoEntry = new UserDto(user.getName(), user.getEmail(), user.getId(), user.getPassword());
             userDtoList.add(userDtoEntry);
         }
         return userDtoList;

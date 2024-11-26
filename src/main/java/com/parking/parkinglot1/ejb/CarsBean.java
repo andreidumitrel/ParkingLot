@@ -2,6 +2,7 @@ package com.parking.parkinglot1.ejb;
 
 import com.parking.parkinglot1.common.CarDto;
 import com.parking.parkinglot1.entities.Car;
+import com.parking.parkinglot1.entities.User;
 import jakarta.ejb.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -29,6 +30,20 @@ public class CarsBean {
         }
     }
 
+    public void createCar(String licensePlate, String parkingSpot, Long userId){
+        LOG.info("createCar");
+
+        Car car = new Car();
+        car.setLicensePlate(licensePlate);
+        car.setParkingSpot(parkingSpot);
+
+        User user = entityManager.find(User.class, userId);
+        user.getCars().add(car);
+        car.setUser(user);
+
+        entityManager.persist(car);
+    }
+
     private List<CarDto> copyCarsToDto(List<Car> cars){
         List<CarDto> carDtoList = new ArrayList<>();
         for(Car car : cars){
@@ -36,5 +51,10 @@ public class CarsBean {
             carDtoList.add(carDtoEntry);
         }
         return carDtoList;
+    }
+
+    public CarDto findCarById(Long carId) {
+        Car car = entityManager.find(Car.class, carId);
+        return new CarDto(car.getId(), car.getLicensePlate(), car.getParkingSpot(), car.getUser().getName());
     }
 }
