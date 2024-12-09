@@ -50,7 +50,6 @@ public class CarsBean {
 
         for(Long carId : carIds){
             Car car = entityManager.find(Car.class, carId);
-            entityManager.remove(car);
         }
     }
 
