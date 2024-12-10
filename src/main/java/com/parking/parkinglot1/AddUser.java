@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.Arrays;
 
-@WebServlet(name = "com.parking.parkinglot1.AddUser", value = "/com.parking.parkinglot1.AddUser")
+@WebServlet(name = "AddUser", value = "/AddUser")
 public class AddUser extends HttpServlet {
 
     @Inject
