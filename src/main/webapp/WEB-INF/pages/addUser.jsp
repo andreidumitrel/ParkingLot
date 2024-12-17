@@ -38,7 +38,7 @@
                 <label class="form-label" for="user_groups">Groups</label>
                 <select class="form-select" id="user_groups" name="user_groups" multiple>
                     <option value="">Choose...</option>
-                    <c:forEach var="user_groups" items="${userGroups}" varStatus="status">
+                    <c:forEach var="user_group" items="${userGroups}" varStatus="status">
                         <option value="${user_group}">${user_group}</option>
                     </c:forEach>
                 </select>
