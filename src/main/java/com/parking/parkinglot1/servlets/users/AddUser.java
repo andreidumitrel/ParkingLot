@@ -1,4 +1,4 @@
-package com.parking.parkinglot1;
+package com.parking.parkinglot1.servlets.users;
 
 import com.parking.parkinglot1.ejb.UserBean;
 import jakarta.inject.Inject;

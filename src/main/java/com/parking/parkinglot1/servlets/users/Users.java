@@ -1,8 +1,6 @@
-package com.parking.parkinglot1;
+package com.parking.parkinglot1.servlets.users;
 
-import com.parking.parkinglot1.common.CarDto;
 import com.parking.parkinglot1.common.UserDto;
-import com.parking.parkinglot1.ejb.CarsBean;
 import com.parking.parkinglot1.ejb.InvoiceBean;
 import com.parking.parkinglot1.ejb.UserBean;
 import jakarta.annotation.security.DeclareRoles;

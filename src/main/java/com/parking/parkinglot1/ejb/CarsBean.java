@@ -1,7 +1,9 @@
 package com.parking.parkinglot1.ejb;
 
 import com.parking.parkinglot1.common.CarDto;
+import com.parking.parkinglot1.common.CarPhotoDto;
 import com.parking.parkinglot1.entities.Car;
+import com.parking.parkinglot1.entities.CarPhoto;
 import com.parking.parkinglot1.entities.User;
 import jakarta.ejb.*;
 import jakarta.persistence.EntityManager;
@@ -45,11 +47,16 @@ public class CarsBean {
         entityManager.persist(car);
     }
 
-    public void deleteCarsByIds(Collection<Long> carIds){
+    public void deleteCarsByIds(Collection<Long> carIds) {
         LOG.info("deleteCarsByIds");
 
-        for(Long carId : carIds){
+        for(Long carId : carIds) {
             Car car = entityManager.find(Car.class, carId);
+            CarPhoto photo = car.getPhoto();
+            if (photo != null) {
+                entityManager.remove(photo);
+            }
+            entityManager.remove(car);
         }
     }
 
@@ -80,4 +87,33 @@ public class CarsBean {
         Car car = entityManager.find(Car.class, carId);
         return new CarDto(car.getId(), car.getLicensePlate(), car.getParkingSpot(), car.getUser().getName());
     }
+
+    public void addPhotoToCar(Long carId, String filename, String fileType, byte[] fileContent) {
+        LOG.info("addPhotoToCar");
+        CarPhoto photo = new CarPhoto();
+        photo.setFilename(filename);
+        photo.setFileType(fileType);
+        photo.setFileContent(fileContent);
+        Car car = entityManager.find(Car.class, carId);
+        if (car.getPhoto() != null) {
+            entityManager.remove(car.getPhoto());
+        }
+        car.setPhoto(photo);
+        photo.setCar(car);
+        entityManager.persist(photo);
+    }
+    public CarPhotoDto findPhotoByCarId(Integer carId) {
+        List<CarPhoto> photos = entityManager
+
+                .createQuery("SELECT p FROM CarPhoto p where p.car.id = :id", CarPhoto.class)
+                .setParameter("id", carId)
+                .getResultList();
+        if (photos.isEmpty()) {
+            return null;
+        }
+        CarPhoto photo = photos.get(0); // the first element
+        return new CarPhotoDto(photo.getId(), photo.getFilename(), photo.getFileType(),
+                photo.getFileContent());
+    }
+
 }

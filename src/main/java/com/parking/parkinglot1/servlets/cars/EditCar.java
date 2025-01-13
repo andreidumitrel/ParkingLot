@@ -1,10 +1,9 @@
-package com.parking.parkinglot1;
+package com.parking.parkinglot1.servlets.cars;
 
 import com.parking.parkinglot1.common.CarDto;
 import com.parking.parkinglot1.common.UserDto;
 import com.parking.parkinglot1.ejb.CarsBean;
 import com.parking.parkinglot1.ejb.UserBean;
-import com.parking.parkinglot1.entities.Car;
 import jakarta.inject.Inject;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;

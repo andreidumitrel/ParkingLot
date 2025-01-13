@@ -1,6 +1,8 @@
 package com.parking.parkinglot1.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -36,6 +38,7 @@ public class User {
     }
 
     @Basic
+    @Column(nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -44,6 +47,8 @@ public class User {
         this.name = name;
     }
     @Basic
+    @Size(min = 4, max = 100)
+    @Column(nullable = false, length = 100)
     public String getPassword() {
         return password;
     }
@@ -52,6 +57,8 @@ public class User {
         this.password = password;
     }
     @Basic
+    @Email
+    @Column(unique = true, nullable = false, length = 100)
     public String getEmail() {
         return email;
     }
