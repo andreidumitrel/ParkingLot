@@ -8,7 +8,11 @@
     <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
 
         <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddUser">Add User</a>
-        <button type="submit" class="btn btn-secondary btn-lg">Invoice</button>
+        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/EditUser">Edit User</a>
+
+        <c:if test="${pageContext.request.isUserInRole('INVOICE')}">
+            <button type="submit" class="btn btn-secondary btn-lg">Invoice</button>
+        </c:if>
     </c:if>
     <div class="container text-center">
         <c:forEach var="user" items="${users}">

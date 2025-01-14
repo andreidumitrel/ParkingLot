@@ -73,4 +73,15 @@ public class UserBean {
                         .getResultList();
         return usernames;
     }
+    public void updateUser(Long id,String name, String email, String password) {
+        LOG.info("updateUser");
+        User user = entityManager.find(User.class, id);
+        if (user == null) {
+            throw new EJBException("User not found");
+        }
+        user.setName(name);
+        user.setEmail(email);
+        user.setPassword(passwordBean.convertToSha256(password));
+        //assignGroupsToUser(name, groups);
+    }
 }

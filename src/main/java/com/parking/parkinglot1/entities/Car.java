@@ -31,6 +31,9 @@ public class Car {
     public void setPhoto(CarPhoto photo) {
         this.photo = photo;
     }
+
+    @Column(name = "parking_spot", length = 10)
+    @Size(min = 1, max = 3)
     public String getParkingSpot() {
         return parkingSpot;
     }
